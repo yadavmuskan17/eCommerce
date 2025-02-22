@@ -1,9 +1,10 @@
 
 
 // const UserModel=require("../Models/UserModel")
-const UserModel=require("../Models/userModel"); 
+const UserModel=require("../Models/userModel")
 const jwt =require("jsonwebtoken")
 const UserSignUp=async(req,res)=>{
+
     const {name,address, city,contact,email,password,confirmPassword}=req.body;
     try {
         if(password!=confirmPassword)

@@ -1,37 +1,40 @@
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { FaUserAltSlash } from "react-icons/fa";
-import { FaUserCheck } from "react-icons/fa6";
-import { FaCartPlus } from "react-icons/fa";
-import { useState } from "react";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Dropdown } from "react-bootstrap";
-import { useSelector,useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { Navbar, Nav, NavDropdown, Container, Dropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import nav1 from '../assets/nav1.webp';
 import nav2 from '../assets/nav2.jpg';
 import nav3 from '../assets/nav3.webp';
 import nav4 from '../assets/nav4.webp';
 import nav5 from '../assets/nav5.jpg';
 import nav6 from '../assets/nav6.webp';
-import { useContext } from "react";
-import { Offcanvas, Button } from "react-bootstrap";
+import { FaUserAltSlash } from "react-icons/fa";
+import { FaUserCheck } from "react-icons/fa6";
+import { FaPlusCircle } from "react-icons/fa";
+import { FaMinusCircle } from "react-icons/fa";
+
 import "../Css/Topbar.css";
+import { FaCartPlus } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+import { FaUserCog } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { Offcanvas, Button } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
 import BASE_URL from "../config";
+import { useContext } from "react";
 import { myLoginContext } from "../LoginContext";
 import {qntyIncrease, qntyDecrease, productRemove} from "../Redux/cardSlice";
-
 
 const Topbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
   const proData = useSelector((state) => state.mycart.cart); // Redux cart data
   const dispatch = useDispatch();
-  const productData = useSelector(state => state.mycart.cart);
-  const prolength = productData.length;
-  const [showCart, setShowCart] = useState(false); 
-  
+
+  const ProductData = useSelector(state => state.mycart.cart);
+  const proLength = ProductData.length;
+
+  const [showCart, setShowCart] = useState(false);
+
 
   const handleClose = () => setShowCart(false);
   const handleShow = () => setShowCart(true);
@@ -41,35 +44,32 @@ const Topbar = () => {
     localStorage.clear();
     setIsLogedIn(false);
   }
+
+
   const QuantityIncrease=(id)=>{
-      dispatch(qntyIncrease({id:id}));
-  }
-  const QuantityDecrease=(id)=>{
-    dispatch(qntyDecrease({id:id}));
-  }
-  
-  const productDelete=(id)=>{
-     dispatch(proDelete({id:id}))
-  }
-  
+    dispatch(qntyIncrease({id:id}));
+}
+const QuantityDecrease=(id)=>{
+  dispatch(qntyDecrease({id:id}));
+}
+
+const productDelete=(id)=>{
+   dispatch(proDelete({id:id}))
+}
   return (
     <>
-
-      <div id="topmenu">
-        <Navbar expand="lg" className="topbar" >
-          <Container fluid>
-            <Navbar.Brand href="#" style={{ marginLeft: "20px", fontWeight: "bold" }}> @HPHONE </Navbar.Brand>
-            <Navbar.Toggle aria-controls="navbarScroll" />
-            <Navbar.Collapse id="navbarScroll">
-              <Nav
-              className="me-auto"
-                // className="me-auto my-2 my-lg-0"
-                style={{ maxHeight: '100px' }}
-                navbarScroll
-              >
-                <Nav.Link as={Link} to="/">Home</Nav.Link>
-                <Nav.Link as={Link} to="adminlayout">Products</Nav.Link>
-                <NavDropdown title="SHOP" id="navbarScrollingDropdown">
+      <Navbar expand="lg" className="topbar">
+        <Container>
+          <Navbar.Brand as={Link} to="/" className="brand-logo" style={{ color: "#fff" }}>
+            @HPHONE
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Collapse id="navbarScroll">
+            <Nav className="me-auto" >
+              <Nav.Link as={Link} to="/" style={{ color: "#fff" }}>
+                HOME
+              </Nav.Link>
+              <NavDropdown title="SHOP" id="navbarScrollingDropdown"   >
                 <div className="dropdown-with-images" >
                   <div className="dropdown-column">
                     <NavDropdown.Item as={Link} to="/earbuds">
@@ -101,34 +101,37 @@ const Topbar = () => {
                     </NavDropdown.Item>
                   </div>
                 </div>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item as={Link} to="adminlayout">
-                   DASHBORD
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="adminlayout">
-                   CONTACT
-                  </NavDropdown.Item>
-                </NavDropdown>
+              </NavDropdown>
+              <NavDropdown title="PAGES"   id="navbarScrollingDropdown" >
+                <NavDropdown.Item  as={Link} to="/adminlayout" className="d-flex align-items-center">
+                <span>Dashbord</span>
+                </NavDropdown.Item>
+              </NavDropdown>
+              <Nav.Link as={Link} to="/" style={{ color: "#fff" }}>
+                CONTACT
 
-              </Nav>
+              </Nav.Link>
+            </Nav>
+            {/* <Button  onClick={handleShow} className="cart-button"> */}
 
 
-
+            <div style={{ cursor: "pointer", display: "inline-block" }} >
               <Nav className="d-flex gap-3">
                 {/* DROPDOWN */}
+                
                 <Dropdown show={showDropdown} onMouseEnter={() => setShowDropdown(true)} onMouseLeave={() => setShowDropdown(false)}>
                   <Nav.Link className="d-flex align-items-center " onClick={() => setShowDropdown(!showDropdown)}>
                     {isLogedIn ? (<>
-                      <FaUserCheck size={28} className="cursor-pointer mt-1 " />
+                      <FaUserCheck size={30} color="white" className="cursor-pointer mt-1 " />
                     </>) : (<>
-                      <FaUserAltSlash size={28} className="cursor-pointer mt-1 " />
+                      <FaUserAltSlash size={28} color="white" className="cursor-pointer mt-1 " />
                     </>)}
 
                   </Nav.Link>
                   <Dropdown.Menu>
                     {isLogedIn ? (<>
-                      <Dropdown.Item as={Link} to="/userlogin">
-                        Welcome: <span style={{ color: "blue", fontSize: "16px" }}>{localStorage.getItem("username")}</span>
+                      <Dropdown.Item as={Link} to="/login">
+                        Welcome: <span style={{ color: "blue",fontSize:"16px" }}>{localStorage.getItem("username")}</span>
                       </Dropdown.Item>
                       <Dropdown.Item onClick={logout}>
                         Logout!
@@ -141,32 +144,31 @@ const Topbar = () => {
                   </Dropdown.Menu>
                 </Dropdown>
               </Nav>
+            </div>
+         
 
-              {/* 
-            <Nav.Link as={Link} to="/cart" className="d-flex align-items-center">
-              <button style={{textDecoration:"none",border:"none", marginRight:"5px",backgroundColor:"white"}}>
-                <FaShoppingCart size={25}/><sup style={{fontSize:"15px",height:"5px",
-                   width:"10px",borderRadius:"50%",backgroundColor:"red",padding:"5px"}}>
-                    {prolength}</sup></button>
-            </Nav.Link> */}
-              <div className="cart-container position-relative mx-3">
-                <a onClick={handleShow} style={{ cursor: "pointer" }}>
-                  {/* <FaShoppingBag className="nav-icon" /> */}
-                  <FaCartPlus onClick={handleShow} style={{ fontSize: "30px", color: "#fff", alignItems: "center", borderRadius: "50px", border: "2px soild black" }} />
-                  <sup className="myitem"
-                    style={{
-                      marginRight: "20px", background: "#fff",
-                      borderRadius: "60%", padding: "5px", color: "black",
-                      fontWeight: "bold", fontSize: "11px"
-                    }}>{prolength}</sup>
-                </a>
-              </div>
-           </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      </div>
-{/* ---------------------------------------------------------------------------------- */}
-<Offcanvas show={showCart} onHide={handleClose} placement="end">
+            <div className="cart-container position-relative mx-3">
+              <a onClick={handleShow} style={{ cursor: "pointer" }}>
+                {/* <FaShoppingBag className="nav-icon" /> */}
+                <FaCartPlus onClick={handleShow} style={{ fontSize: "30px", color: "#fff",alignItems:"center",borderRadius:"50px",border:"2px soild black" }} />              
+                <sup className="myitem" 
+                style={{marginRight:"20px",background:"#fff",
+                borderRadius:"60%",padding:"5px",color:"black",
+                fontWeight:"bold",fontSize:"11px"}}>{proLength}</sup>
+              </a>
+            </div>
+            <div
+              style={{ cursor: "pointer", display: "inline-block" }}>
+            </div>
+            {/* </Button> */} 
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+
+
+
+      {/* //--------------------------------------------------------------------------- */}
+      <Offcanvas show={showCart} onHide={handleClose} placement="end">
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Your Cart</Offcanvas.Title>
         </Offcanvas.Header>
@@ -213,10 +215,8 @@ const Topbar = () => {
           </Button>
         </Offcanvas.Body>
       </Offcanvas>
-
     </>
-  )
+  );
 }
+
 export default Topbar;
-
-
