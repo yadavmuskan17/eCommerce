@@ -1,0 +1,114 @@
+/* General Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Footer Container */
+  .footer-container {
+    position: relative;
+    text-align: center;
+    background-color: #ffffff;
+    padding-bottom: 2rem;
+  }
+  
+  /* Footer Image */
+  .footer-image {
+    width: 100%;
+    max-height: 60vh; 
+    object-fit: contain; 
+    margin-top: 100px;
+  }
+  
+  /* Footer Content */
+  .footer-content {
+    position: relative;
+    bottom: 200px; /* Adjust to overlap the image */
+  }
+  
+  /* Heading */
+  .footer-heading {
+    color: #6f287b;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  /* Email Input Section */
+  .email-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2rem;
+  }
+  
+  .email-input {
+    width: 300px;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 1rem;
+    outline: none;
+  }
+  
+  .send-button {
+    background-color: #6f287b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .send-button .arrow {
+    font-size: 1.2rem;
+  }
+  
+  .send-button:hover {
+    background-color: #4a1e54;
+  }
+  
+  /* Footer Links */
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .footer-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .footer-links a:hover {
+    color: #6f287b;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .footer-content {
+      top: -30px;
+    }
+  
+    .email-input {
+      width: 200px;
+    }
+  
+    .footer-heading {
+      font-size: 1.5rem;
+    }
+  
+    .footer-links {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  

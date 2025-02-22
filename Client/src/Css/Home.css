@@ -1,0 +1,139 @@
+
+.side-div, .side-div2 {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    color: white;
+    padding: 20px;
+  
+    /* Adjust font sizes based on screen size */
+    h1 {
+      font-size: 3rem; /* Adjust the base font size */
+      @media (min-width: 768px) {
+        font-size: 4rem;
+      }
+      @media (min-width: 1024px) {
+        font-size: 5rem;
+      }
+    }
+  
+    pre {
+      font-size: 1.2rem; /* Adjust the base font size */
+      @media (min-width: 768px) {
+        font-size: 1.5rem;
+      }
+      @media (min-width: 1024px) {
+        font-size: 2rem;
+      }
+    }
+  }
+  
+  .side-div {
+    left: 10%;
+  }
+  
+  .side-div2 {
+    right: 10%;
+  }h1 {
+    font-family: 'Montserrat', sans-serif; /* Replace with your desired font */
+    font-weight: 700;
+   
+  }
+  
+  pre {
+    font-family: 'Roboto', sans-serif; /* Replace with your desired font */
+    font-weight: 400;
+  }
+  
+  .side-btn {
+    font-family: 'Open Sans', sans-serif; /* Replace with your desired font */
+    font-weight: 600;
+   
+  }
+  .side-btn{
+    background-color: purple;
+    border: 2px solid purple;
+    width: 200px;
+    height: 40px
+  }
+  .home-side{
+    background-color: black;
+  }
+  .home-div2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    
+  }
+  
+  .home-div2-img {
+    max-width: 100%;
+    max-height:100%;
+    padding: 100px;
+  }
+  
+  .home-div2text {
+    font-size: 20px;
+    padding-left: 100px;
+    color: #fff;
+  }
+ /* --------------------Home-2-------------- */
+
+ body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  #home2_div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  #home2_h1 {
+    color: rgb(165, 70, 165);
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .home2_p {
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1.6;
+    padding: 10px;
+  }
+  
+.home2_btn {
+    background-color: #4a90e2;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 150px;
+    height: 60px;
+   
+  }
+  
+  .home2_btn:hover {
+    background-color: #357ABD;
+
+  }
+  
+  #home2_img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  #home2_img2{
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+   position: relative;
+   right: 360px;
+   top: 42px;
+  }
+  
