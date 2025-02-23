@@ -8,8 +8,8 @@ import { useDispatch } from "react-redux";
 import {addtoCart} from "../Redux/cardSlice";
 import BASE_URL from "../config";
 import { FaRegHeart, FaStar } from "react-icons/fa";
-
-
+import { useNavigate } from "react-router-dom";
+import { addtowishlist } from "../Redux/wishlistSlice";
 const Arrival = () => {
   const [mydata, setMydata] = useState([]);
   const dispatch = useDispatch();
@@ -28,6 +28,11 @@ useEffect(()=>{
     loadData();
 }, [])
 
+
+const navigate=useNavigate();
+const detail=(id)=>{
+    navigate(`/viewproduct/${id}`);
+}
  const ans=mydata.map((key)=>{
   return(
     <>
@@ -35,9 +40,9 @@ useEffect(()=>{
           {/* <div key={index} className="product-card"> */}
           <div  className="product-card">
             <div className="image-container">
-              <img src={`${BASE_URL}/${key.defaultImage}`} alt={key.name} className="product-image" />
+              <img src={`${BASE_URL}/${key.defaultImage}`} alt={key.name} className="product-image"  />
               <div className="hover-overlay">
-                <Button
+                {/* <Button
                   variant="dark"
                   className="rounded-pill px-3"           
                    onClick={()=>{dispatch(addtoCart({id:key._id, name:key.name, brand:key.brand, price:key.price,
@@ -46,9 +51,19 @@ useEffect(()=>{
 
                 >
                   Add To Cart
-                </Button>
-                <Button variant="outline-dark" className="rounded-circle mx-2">❤️</Button>
-                <Button variant="outline-dark" className="rounded-circle mx-2">🔍</Button>
+                </Button> */}
+                <Button variant="success" className="add-to-cart11"
+        onClick={()=>{dispatch(addtoCart({id:key._id, productname:key.productname, productbrand:key.productbrand,
+           productprice:key.productprice, description:key.description,category:key.category, 
+            images:key.images, defaultImage:key.defaultImage, ratings:key.rating, status:key.status, qnty:1}))}}
+                 >Add to Cart</Button>
+                <Button variant="outline-dark" className="rounded-circle mx-2"
+               onClick={()=>{dispatch(addtowishlist({id:key._id, name:key.name,brand:key.brand,
+                price:key.price, description:key.description,category:key.category, 
+                images:key.images, defaultImage:key.defaultImage, ratings:key.ratings, 
+                status:key.status, qnty:1}))}}
+               >❤️</Button>
+                <Button variant="outline-dark" className="rounded-circle mx-2"  onClick={()=>{detail(key._id)}}>🔍</Button>
               </div>
             </div>
             <div className="product-info text-center">
@@ -57,12 +72,12 @@ useEffect(()=>{
               <h6>{`Category: ${key.category}`}</h6>
               <h6 style={{ color: 'crimson' }}>{`Price: Rs. ${key.price}`}</h6>
               {/* <h6>{`Discount: Rs. ${key.disco}`}</h6> */}
-              <div className="product-rating">
+              {/* <div className="product-rating">
                             {[...Array(key.ratings)].map((_, index) => (
                                 <FaStar key={index} className="star-icon" />
                             ))}
                            
-              </div>
+              </div> */}
             </div>
           </div>
     </>

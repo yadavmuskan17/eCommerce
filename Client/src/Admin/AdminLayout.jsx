@@ -12,7 +12,7 @@ const AdminLayout=()=>{
                   <Header/>
                   <Sidebar/>
         </div>
-        <div style={{display:"flex",justifyContent:"center",marginTop:"100px",marginLeft:"400px"}}>
+        <div style={{display:"flex",justifyContent:"center",marginTop:"80px",marginLeft:"260px"}}>
                     <Outlet/>
         </div>
        

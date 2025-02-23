@@ -155,7 +155,7 @@ function Add_Product() {
 
     return (
         <div className="addfrom">
-            <h1 style={{ color: "#fff", textAlign: "center" }}>Add Product</h1>
+            <h1 style={{ color: "black", textAlign: "center",fontWeight:"bold" }}>Add Product</h1>
             <Form style={{ width: "500px" }} onSubmit={handleSubmit}>
                 <Form.Select aria-label="Default select example" value={selectedCategory} onChange={handleCategoryChange}>
                     <option value="">Select Category</option>

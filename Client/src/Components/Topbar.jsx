@@ -8,7 +8,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Dropdown } from "react-bootstrap";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import nav1 from '../assets/nav1.webp';
 import nav2 from '../assets/nav2.jpg';
 import nav3 from '../assets/nav3.webp';
@@ -20,7 +20,9 @@ import { Offcanvas, Button } from "react-bootstrap";
 import "../Css/Topbar.css";
 import BASE_URL from "../config";
 import { myLoginContext } from "../LoginContext";
-import {qntyIncrease, qntyDecrease, productRemove} from "../Redux/cardSlice";
+import { qntyIncrease, qntyDecrease, productRemove } from "../Redux/cardSlice";
+import { FcLike } from "react-icons/fc";
+
 
 
 const Topbar = () => {
@@ -30,8 +32,10 @@ const Topbar = () => {
   const dispatch = useDispatch();
   const productData = useSelector(state => state.mycart.cart);
   const prolength = productData.length;
-  const [showCart, setShowCart] = useState(false); 
-  
+  const [showCart, setShowCart] = useState(false);
+  const likefun = () => {
+    navigate('/wishlist');
+  }
 
   const handleClose = () => setShowCart(false);
   const handleShow = () => setShowCart(true);
@@ -41,74 +45,69 @@ const Topbar = () => {
     localStorage.clear();
     setIsLogedIn(false);
   }
-  const QuantityIncrease=(id)=>{
-      dispatch(qntyIncrease({id:id}));
+  const qntyDecrease = (id) => {
+    dispatch(qntyIncrease({ id: id }));
   }
-  const QuantityDecrease=(id)=>{
-    dispatch(qntyDecrease({id:id}));
+  const QuantityDecrease = (id) => {
+    dispatch(qntyDecrease({ id: id }));
   }
-  
-  const productDelete=(id)=>{
-     dispatch(proDelete({id:id}))
+
+  const productDelete = (id) => {
+    dispatch(proDelete({ id: id }))
   }
-  
+
   return (
     <>
 
       <div id="topmenu">
         <Navbar expand="lg" className="topbar" >
           <Container fluid>
-            <Navbar.Brand href="#" style={{ marginLeft: "20px", fontWeight: "bold" }}> @HPHONE </Navbar.Brand>
+            <Navbar.Brand href="#" style={{ marginLeft: "20px", fontWeight: "bolder", color: "#fff" }}> @HPHONE </Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
               <Nav
-              className="me-auto"
+                className="me-auto"
                 // className="me-auto my-2 my-lg-0"
                 style={{ maxHeight: '100px' }}
                 navbarScroll
               >
-                <Nav.Link as={Link} to="/">Home</Nav.Link>
-                <Nav.Link as={Link} to="adminlayout">Products</Nav.Link>
-                <NavDropdown title="SHOP" id="navbarScrollingDropdown">
-                <div className="dropdown-with-images" >
-                  <div className="dropdown-column">
-                    <NavDropdown.Item as={Link} to="/earbuds">
-                      <img src={nav1} alt="Earbuds" className="dropdown-image" />
-                      <span >True Wireless Earbuds</span>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/speaker">
-                      <img src={nav2} alt="Speakers" className="dropdown-image" />
-                      <span>Wireless Speakers</span>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/neckband" className="d-flex align-items-center">
-                      <img src={nav3} alt="Neckbands" className="dropdown-image" />
-                      <span>Neckbands</span>
-                    </NavDropdown.Item>
+                <Nav.Link as={Link} to="/" style={{ color: "#fff" }}>Home</Nav.Link>
+
+                <NavDropdown title="SHOP" id="navbarScrollingDropdown" style={{ color: "#fff" }}>
+                  <div className="dropdown-with-images" >
+                    <div className="dropdown-column">
+                      <NavDropdown.Item as={Link} to="/earbuds">
+                        <img src={nav1} alt="Earbuds" className="dropdown-image" />
+                        <span >True Wireless Earbuds</span>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/speaker">
+                        <img src={nav2} alt="Speakers" className="dropdown-image" />
+                        <span>Wireless Speakers</span>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/neckband" className="d-flex align-items-center">
+                        <img src={nav3} alt="Neckbands" className="dropdown-image" />
+                        <span>Neckbands</span>
+                      </NavDropdown.Item>
+                    </div>
+                    {/* Second Column */}
+                    <div className="dropdown-column">
+                      <NavDropdown.Item as={Link} to="/headphone" className="d-flex align-items-center">
+                        <img src={nav4} alt="Headphones" className="dropdown-image" />
+                        <span>Wireless Headphones</span>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/earphone" className="d-flex align-items-center">
+                        <img src={nav5} alt="Earphones" className="dropdown-image" />
+                        <span>Wired Earphones</span>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/Party-Speakers" className="d-flex align-items-center">
+                        <img src={nav6} alt="Party Speakers" className="dropdown-image" />
+                        <span>Party Speakers</span>
+                      </NavDropdown.Item>
+                    </div>
                   </div>
-                  {/* Second Column */}
-                  <div className="dropdown-column">
-                    <NavDropdown.Item as={Link} to="/headphone" className="d-flex align-items-center">
-                      <img src={nav4} alt="Headphones" className="dropdown-image" />
-                      <span>Wireless Headphones</span>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/earphone" className="d-flex align-items-center">
-                      <img src={nav5} alt="Earphones" className="dropdown-image" />
-                      <span>Wired Earphones</span>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/Party-Speakers" className="d-flex align-items-center">
-                      <img src={nav6} alt="Party Speakers" className="dropdown-image" />
-                      <span>Party Speakers</span>
-                    </NavDropdown.Item>
-                  </div>
-                </div>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item as={Link} to="adminlayout">
-                   DASHBORD
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="adminlayout">
-                   CONTACT
-                  </NavDropdown.Item>
                 </NavDropdown>
+                <Nav.Link as={Link} to="adminlayout" style={{ color: "#fff" }}>Admin</Nav.Link>
 
               </Nav>
 
@@ -119,9 +118,9 @@ const Topbar = () => {
                 <Dropdown show={showDropdown} onMouseEnter={() => setShowDropdown(true)} onMouseLeave={() => setShowDropdown(false)}>
                   <Nav.Link className="d-flex align-items-center " onClick={() => setShowDropdown(!showDropdown)}>
                     {isLogedIn ? (<>
-                      <FaUserCheck size={28} className="cursor-pointer mt-1 " />
+                      <FaUserCheck size={30} className="cursor-pointer mt-1 " style={{ color: "#fff" }} />
                     </>) : (<>
-                      <FaUserAltSlash size={28} className="cursor-pointer mt-1 " />
+                      <FaUserAltSlash size={30} className="cursor-pointer mt-1 " style={{ color: "#fff" }} />
                     </>)}
 
                   </Nav.Link>
@@ -141,14 +140,11 @@ const Topbar = () => {
                   </Dropdown.Menu>
                 </Dropdown>
               </Nav>
+              <div >
+                <FcLike size={30} onClick={likefun} ></FcLike>
+              </div>
 
-              {/* 
-            <Nav.Link as={Link} to="/cart" className="d-flex align-items-center">
-              <button style={{textDecoration:"none",border:"none", marginRight:"5px",backgroundColor:"white"}}>
-                <FaShoppingCart size={25}/><sup style={{fontSize:"15px",height:"5px",
-                   width:"10px",borderRadius:"50%",backgroundColor:"red",padding:"5px"}}>
-                    {prolength}</sup></button>
-            </Nav.Link> */}
+
               <div className="cart-container position-relative mx-3">
                 <a onClick={handleShow} style={{ cursor: "pointer" }}>
                   {/* <FaShoppingBag className="nav-icon" /> */}
@@ -161,12 +157,13 @@ const Topbar = () => {
                     }}>{prolength}</sup>
                 </a>
               </div>
-           </Navbar.Collapse>
+
+            </Navbar.Collapse>
           </Container>
         </Navbar>
       </div>
-{/* ---------------------------------------------------------------------------------- */}
-<Offcanvas show={showCart} onHide={handleClose} placement="end">
+      {/* ---------------------------------------------------------------------------------- */}
+      <Offcanvas show={showCart} onHide={handleClose} placement="end">
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Your Cart</Offcanvas.Title>
         </Offcanvas.Header>
@@ -187,16 +184,17 @@ const Topbar = () => {
                   <p style={{ margin: 0 }}>Rs. {key.price} x {key.qnty} = Rs. {key.price * key.qnty}</p>
                 </div>
                 <div>
-                <FaMinusCircle onClick={()=>{dispatch(qntyDecrease({id:key.id}))}} />
-                   {key.qnty} 
-               <FaPlusCircle onClick={()=>{dispatch(qntyIncrease({id:key.id}))}} />  
+                  <FaMinusCircle onClick={() => { dispatch(qntyDecrease({ id: key.id })) }} />
+                  {key.qnty}
+                  {key.qnty}
+                  <FaPlusCircle onClick={() => { dispatch(qntyIncrease({ id: key.id })) }} />
                 </div>
                 {/* Remove Button */}
                 <Button
                   variant="danger"
                   size="sm"
                   style={{ marginLeft: "auto" }}
-                  onClick={()=>{dispatch(productRemove({id:key.id}))}}                >
+                  onClick={() => { dispatch(productRemove({ id: key.id })) }}                >
                   Remove
                 </Button>
               </div>
@@ -204,8 +202,8 @@ const Topbar = () => {
           )}
 
           {/* Buttons */}
-          <Button variant="primary" className="w-100 mb-2" 
-          onClick={()=>{navigate("/checkout")}}>
+          <Button variant="primary" className="w-100 mb-2"
+            onClick={() => { navigate("/checkout") }}>
             Proceed to Checkout
           </Button>
           <Button variant="secondary" className="w-100" onClick={handleClose}>

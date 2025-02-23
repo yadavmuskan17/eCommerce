@@ -1,0 +1,18 @@
+.update-product-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  /* Responsive Table */
+  @media (max-width: 768px) {
+    .responsive-table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  
+    .update-product-container {
+      padding: 10px;
+    }
+  }
+  

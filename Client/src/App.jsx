@@ -12,7 +12,8 @@ import Checkout from "./Pages/Checkout"
 import CustomerOrders from "./Admin/Pages/CustomerOrder"; 
 import DisplayCustomer from "./Admin/Pages/CustomerDisplay";
 import UpdateCustomer from "./Admin/Pages/UpdateCustomer";
-
+import Wishlist from "./Pages/Wishlist";
+import ViewProduct from "./Pages/ViewProduct";
 const App = () => {
   return (
    <>
@@ -26,6 +27,9 @@ const App = () => {
           <Route path="login" element={<Login/>}></Route>
           <Route path="signup" element={<Signup/>}/> 
           <Route path="checkout" element={<Checkout/>}/> 
+          <Route path="viewproduct/:id" element={<ViewProduct/>}/> 
+          <Route path="wishlist" element={<Wishlist/>}/> 
+
 
           {/* Nested Admin Routes inside AdminLayout */}   
  

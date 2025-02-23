@@ -8,7 +8,19 @@ const productDisplay=async(req, res)=>{
         console.log(error);
     }
 }
+const ProductDetails=async(req,res)=>{
+    const {id}=req.body;
+    try {
+        const details=await ProductModel.findById(id);
+        // console.log(details);
+        // res.send("ok")
+        res.status(200).send(details);
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 module.exports={
-    productDisplay
+    productDisplay,
+    ProductDetails
 }
